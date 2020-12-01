@@ -1,4 +1,4 @@
-def hostAddress = "159.65.123.81"
+def hostAddress = 159.65.123.81
 def portAdmin = "9990"
 def portWeb = "8080"
 def pathAddress = "M1-JEE-Project-1.0-SNAPSHOT"
