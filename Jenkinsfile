@@ -28,6 +28,12 @@ pipeline {
 				]) 
 			}
 		}
+		stage('Building Maven') {
+			steps {
+				slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Building with maven..."
+				sh 'mvn clean package'  
+			}
+		}
 		stage('UnitTests') {
 			steps {
 				script {
@@ -41,12 +47,6 @@ pipeline {
 					junit testResults: "target/surefire-reports/*.xml"
 					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit tests available in 'target/surefire-reports/*.xml'."
 				}
-			}
-		}
-		stage('Execute Maven') {
-			steps {
-				slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Running maven..."
-				sh 'mvn clean package'  
 			}
 		}
 		stage('Deploy') {
