@@ -97,6 +97,7 @@
 					<password>${hostpassword}</password>
 				</configuration>
 			</plugin>
+			
         </plugins>
     </build>
 </project>
