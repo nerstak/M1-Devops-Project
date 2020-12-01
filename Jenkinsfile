@@ -36,7 +36,7 @@ pipeline {
 					sh 'mvn clean package wildfly:deploy -Dhostname=159.65.123.81 -Dhostport=9900 -Dhostusername=$USERNAME -Dhostpassword=$PASSWORD'
 				}
 			
-				#deploy adapters: [tomcat9(url: 'http://192.168.33.10:1080', credentialsId: 'deployer')], war: '**/*.war', contextPath: 'mywebapp'
+				//deploy adapters: [tomcat9(url: 'http://192.168.33.10:1080', credentialsId: 'deployer')], war: '**/*.war', contextPath: 'mywebapp'
 				 
 			}
 		}
