@@ -1,0 +1,4 @@
+<glassfish-web-app error-url="">
+    <!-- request.setCharacterEncoding("UTF-8") not functioning without this setting-->
+    <parameter-encoding default-charset="UTF-8" />
+</glassfish-web-app>

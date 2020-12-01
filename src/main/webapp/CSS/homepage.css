@@ -1,0 +1,157 @@
+.main-body{
+    display: flex;
+    flex-flow: column;
+}
+
+/*Navbar*/
+.navbar{
+    flex: 0 1 100px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 16px 32px;
+    box-shadow: -8px 8px 16px -4px rgba(173,173,173,1);
+}
+
+.logo-efrei{
+    height: 64px;
+}
+
+.navbar-menu{
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.navbar-menu > *{
+    margin: 0 8px;
+}
+
+/*Main*/
+.homepage-main{
+    flex: 1 1 auto; /*Take all remaining space*/
+    width: 100%;
+    position: relative;
+}
+
+.homepage-main-content{
+    width: 80%;
+    height: 80%;
+    /*Center inside div */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*Selector*/
+.homepage-selector{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.homepage-selector > div, .homepage-selector input[type="submit"]{
+    margin: 16px 0 32px;
+}
+
+/*Selector keyword*/
+.homepage-selector-select > *{
+    display: inline-block;
+    margin-right: 16px;
+}
+
+.homepage-selector-select{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.homepage-selector-select input[type=text], .homepage-selector-select select{
+    padding: 4px;
+    width: 80%;
+    border: var(--color-textdisable-lighttheme) 1px solid;
+    border-radius: 8px;
+    outline: none;
+}
+
+
+.homepage-selector-select input[type=text]:focus, .homepage-selector-select select:focus{
+    border-color: var(--color-main);
+}
+
+
+/*Table*/
+
+.homepage-table-wrapper{
+    overflow-x: auto;
+}
+
+.homepage-table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 8px 4px;
+    width: 100%;
+}
+
+.homepage-row{
+    display: table-row;
+}
+
+.homepage-cell{
+    display: table-cell;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    padding: 8px 16px;
+    margin: 8px;
+    min-width: 152px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.homepage-table .homepage-row:first-child{
+    box-shadow: -8px 8px 16px -4px rgba(173,173,173,1);
+    font-weight: bold;
+}
+
+.homepage-table input[type=text], .homepage-table input[type=date]{
+    padding: 4px;
+    width: 100%;
+    border: var(--color-textdisable-lighttheme) 1px solid;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.homepage-table input[type=text]:focus, .homepage-table input[type=date]:focus{
+    border-color: var(--color-main);
+}
+
+.homepage-row .homepage-cell:first-child div{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*Button*/
+.homepage-cell{
+    text-align: center;
+}
+
+.homepage-cell input[type="submit"]{
+    border : 2px solid var(--color-main);
+    background: transparent;
+    border-radius: 8px;
+    height: 40px;
+    width: 100px;
+    padding: 0;
+    margin: 0 8px 0 0;
+}
+
+.homepage-cell input[type="submit"]:hover{
+    cursor: pointer;
+    background: var(--color-main);
+    color: white;
+}

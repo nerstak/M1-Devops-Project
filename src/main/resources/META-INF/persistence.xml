@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="default">
+
+        <class>models.TutorEntity</class>
+        <class>models.CommentsEntity</class>
+        <class>models.CompanyEntity</class>
+        <class>models.FinalReportEntity</class>
+        <class>models.InternshipEntity</class>
+        <class>models.KeywordsEntity</class>
+        <class>models.MarksEntity</class>
+        <class>models.SkillsEntity</class>
+        <class>models.StudentEntity</class>
+        <class>models.VisitEntity</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/st2eedb"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="adm" />
+            <property name="javax.persistence.jdbc.password" value="adm" />
+<!--            <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432"/>-->
+<!--            <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>-->
+<!--            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432"/>-->
+<!--            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>-->
+<!--            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432"/>-->
+<!--            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>-->
+<!--            <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432"/>-->
+<!--            <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>-->
+<!--            <property name="eclipselink.persistence.jdbc.user" value="adm" />-->
+<!--            <property name="eclipselink.persistence.jdbc.password" value="adm" />-->
+        </properties>
+    </persistence-unit>
+</persistence>

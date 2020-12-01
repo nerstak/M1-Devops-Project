@@ -1,0 +1,161 @@
+.main-body{
+    display: flex;
+    flex-flow: column;
+}
+
+.main-info{
+    flex: 1 1 auto; /*Take all remaining space*/
+    padding: 32px 10%;
+}
+/*Wrapper for display flex*/
+.wrapper-flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 64px;
+    margin-bottom: 64px;
+}
+
+.wrapper-flex > div{
+    flex: 1;
+    padding: 32px;
+    border-radius: 32px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
+/*Form*/
+.main-info h2{
+    color: var(--color-main);
+    margin-bottom: 16px;
+}
+
+.main-info input, .main-info label{
+    display: block;
+}
+
+.main-info input{
+    margin-bottom: 16px;
+    border: var(--color-textdisable-lighttheme) 2px solid;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.main-info input:focus{
+    border-color: var(--color-main);
+    outline: none;
+}
+
+.main-info label{
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+/*2 inputs on the same line*/
+.div-input-half{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+/*1 input on the same line*/
+.div-input-full input{
+    width: 100%;
+}
+
+/*1 input + button on the same line*/
+.div-input-button {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/*Submit button*/
+.div-input-button input[type="submit"]{
+    margin: 0 0 0 16px;
+}
+
+button[type="submit"]{
+    padding: 8px;
+    border : 2px solid var(--color-main);
+    background: transparent;
+    border-radius: 8px;
+    height: 40px;
+    width: 128px;
+    font-size: 20px;
+    line-height: 16px;
+
+}
+
+button[type="submit"]:hover{
+    cursor: pointer;
+    background: var(--color-main);
+    color: white;
+}
+
+/*3 input on the same line */
+.div-input-third{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 16px;
+}
+
+.div-input-third > div{
+    flex: 1;
+    width: 30%;
+}
+
+.div-input-third > div textarea{
+    resize: none;
+    width: 80%;
+    height: 152px;
+    padding: 8px;
+    border: 2px var(--color-textdisable-lighttheme) solid;
+}
+
+.div-input-third > div textarea:focus{
+    outline: none;
+    border: 2px var(--color-main) solid;
+}
+
+/*List data*/
+.list-data {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list-data p{
+    padding: 8px 16px;
+    background-color: var(--color-main);
+    margin-right: 12px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: white;
+    border-radius: 8px;
+}
+
+.details_message_error, .details_message_success
+{
+    margin-top: 20px;
+    padding: 0 32px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.details_message_success{
+    fill: var(--color-green);
+}
+
+.details_message_error{
+    fill: var(--color-red);
+}
+
+.details_message_success svg, .details_message_error svg{
+    height: 50px;
+    width: 50px;
+    margin-right: 16px;
+}

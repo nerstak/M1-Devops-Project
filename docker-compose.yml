@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+# As you can see, we should have been able to deploy the website. However, because Wildfly is too much different from Glassfish, it is not possible for the Version 2
+  wildfly:
+    image: jboss/wildfly:21.0.0.Final.Postgres
+    build: ./wildfly
+    networks:
+      - wildfly
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    environment:
+      DB_HOST: wildfly-postgres
+      DB_NAME: st2eedb
+      DB_USER: adm
+      DB_PASS: adm
+      DS_NAME: Project
+      JNDI_NAME: java:jboss/datasources/Project
+    volumes:
+      - ./target/M1-JEE-Project-1.0-SNAPSHOT.war:/opt/jboss/wildfly/standalone/deployments/Project.war
+    depends_on:
+      - wildfly-postgres
+
+  wildfly-postgres:
+    image: postgres:13
+    networks:
+      - wildfly
+    restart: always
+    volumes:
+        - ./database/wildfly-postgres/data:/var/lib/postgresql/data
+        - ./database/scripts/JEE_db.sql:/docker-entrypoint-initdb.d/1.JEE_db.sql
+        - ./database/scripts/Populate.sql:/docker-entrypoint-initdb.d/2.Populate.sql
+    environment:
+        POSTGRES_DB: st2eedb
+        POSTGRES_USER: adm
+        POSTGRES_PASSWORD: adm
+
+  sonarqube:
+    image: sonarqube:8.5.1-community
+    networks:
+      - sonarqube
+    restart: always
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
+      - sonar.jdbc.url=jdbc:postgresql://sonarqube-postgres/sonarqube
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    volumes:
+      - ./sonarqube/sonarqube_conf:/opt/sonarqube/conf
+      - ./sonarqube/sonarqube_data:/opt/sonarqube/data
+      - ./sonarqube/sonarqube_extensions:/opt/sonarqube/extensions
+      - ./sonarqube/sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    depends_on:
+      - sonarqube-postgres
+
+  sonarqube-postgres:
+    image: postgres:13
+    networks:
+      - sonarqube
+    restart: always
+    volumes:
+      - ./database/sonarqube-postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: sonarqube
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonar
+
+networks:
+  wildfly:
+  sonarqube:

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <style>
+        /*Variable*/
+        :root{
+            --color-main : #2F80ED;
+            --color-textmain-lighttheme : rgba(0,0,0, 0.87);
+            --color-textmedium-lighttheme : rgba(0,0,0, 0.6);
+            --color-textdisable-lighttheme : rgba(0,0,0, 0.3);
+        }
+
+
+
+
+
+        .homepage-table-wrapper{
+            overflow-x: auto;
+        }
+
+        .homepage-table{
+            display: table;
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        .homepage-row{
+            display: table-row;
+        }
+
+        .homepage-cell{
+            display: table-cell;
+            font-family: "Open Sans", sans-serif;
+            font-size: 1rem;
+            padding: 8px 16px;
+            min-width: 152px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .homepage-table .homepage-row:first-child{
+            box-shadow: -8px 8px 16px -4px rgba(173,173,173,1);
+            font-weight: bold;
+        }
+
+        .homepage-table input[type=text]{
+            padding: 4px;
+            width: 100%;
+            border: var(--color-textdisable-lighttheme) 1px solid;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .homepage-table input[type=text]:focus{
+            border-color: var(--color-main);
+        }
+
+    </style>
+    <div class="homepage-table-wrapper">
+        <div class="homepage-table">
+            <div class="homepage-row">
+                <span class="homepage-cell">#</span>
+                <span class="homepage-cell">Group</span>
+                <span class="homepage-cell">First name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+                <span class="homepage-cell">Last name</span>
+            </div>
+            <form class="homepage-row" method="post" action="blah.html">
+                <span class="homepage-cell"><input type="radio" /></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+            </form>
+            <form class="homepage-row" method="post" action="blah.html">
+                <span class="homepage-cell"><input type="radio" /></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+            </form>
+            <form class="homepage-row" method="post" action="blah.html">
+                <span class="homepage-cell"><input type="radio" /></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+                <span class="homepage-cell"><input type="text" value="slkfjkld"/></span>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

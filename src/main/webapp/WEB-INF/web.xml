@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>control.Login</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Homepage</servlet-name>
+        <servlet-class>control.Homepage</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>control.Logout</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Details</servlet-name>
+        <servlet-class>control.Details</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UpdateDetails</servlet-name>
+        <servlet-class>control.UpdateDetails</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Homepage</servlet-name>
+        <url-pattern>/Homepage</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>Details</servlet-name>
+        <url-pattern>/Details</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UpdateDetails</servlet-name>
+        <url-pattern>/UpdateDetails</url-pattern>
+    </servlet-mapping>
+
+    <!-- Define taglib -->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <include-prelude>/WEB-INF/taglibjstl.jsp</include-prelude>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
+    <welcome-file-list>
+        <welcome-file>Login</welcome-file>
+    </welcome-file-list>
+</web-app>

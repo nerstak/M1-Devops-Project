@@ -1,0 +1,2 @@
+# Keep LF to shell files
+*.sh eol=lf
