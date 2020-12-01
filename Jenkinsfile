@@ -32,7 +32,12 @@ pipeline {
 		stage('Deploy') {
 			steps {
 				slackSend color: 'good', message: "${env.JOB_NAME} - ${env.BUILD_NUMBER}: Deploying..."
-				deploy adapters: [tomcat9(url: 'http://192.168.33.10:1080', credentialsId: 'deployer')], war: '**/*.war', contextPath: 'mywebapp'
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'deployment_wildfly', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+					mvn clean package wildfly:deploy -Dhostname=159.65.123.81 -Dhostport=9900 -Dhostusername=$USERNAME -Dhostpassword=$PASSWORD
+				}
+			
+				#deploy adapters: [tomcat9(url: 'http://192.168.33.10:1080', credentialsId: 'deployer')], war: '**/*.war', contextPath: 'mywebapp'
+				 
 			}
 		}
 	}	
