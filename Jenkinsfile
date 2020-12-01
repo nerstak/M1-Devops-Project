@@ -32,14 +32,14 @@ pipeline {
 			steps {
 				script {
 					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit testing..."
+					sh 'mvn --version'
 					sh 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
 					}
 			}
 			post {
 				always {
-					def junitPath = "target/surefire-reports/*.xml"
-					junit testResults: "${junitPath}"
-					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit tests available in ${junitPath}."
+					junit testResults: "target/surefire-reports/*.xml"
+					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit tests available in 'target/surefire-reports/*.xml'."
 				}
 			}
 		}
