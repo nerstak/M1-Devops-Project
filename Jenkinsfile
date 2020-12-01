@@ -28,6 +28,21 @@ pipeline {
 				]) 
 			}
 		}
+		stage('UnitTests') {
+			steps {
+				script {
+					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit testing..."
+					sh 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
+					}
+			}
+			post {
+				always {
+					def junitPath = "target/surefire-reports/*.xml"
+					junit testResults: ${junitPath}
+					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit tests available in ${junitPath}."
+				}
+			}
+		}
 		stage('Execute Maven') {
 			steps {
 				slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Running maven..."
