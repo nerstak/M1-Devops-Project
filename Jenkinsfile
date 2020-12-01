@@ -38,7 +38,7 @@ pipeline {
 			post {
 				always {
 					def junitPath = "target/surefire-reports/*.xml"
-					junit testResults: ${junitPath}
+					junit testResults: "$junitPath"
 					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit tests available in ${junitPath}."
 				}
 			}
