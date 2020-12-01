@@ -38,7 +38,6 @@ pipeline {
 			steps {
 				script {
 					slackSend color: 'good', message: ":robot_face: ${env.JOB_NAME} - ${env.BUILD_NUMBER}: Unit testing..."
-					sh 'mvn --version'
 					sh 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
 					}
 			}
