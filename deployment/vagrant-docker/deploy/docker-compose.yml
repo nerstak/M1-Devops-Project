@@ -1,0 +1,19 @@
+version: '3'
+services:
+#  jenkins:
+#    image: jenkins/jenkins:lts
+#    ports:
+#      - 2080:8080
+#    volumes:
+#      - DATA_VOLUME:/var/jenkins_home
+#      - PROJECT_VOLUME:/home/project
+  prod:
+    image: nerstak/tomcat_custom
+    ports:
+      - 1080:8080
+    
+      
+      
+#volumes:
+#  DATA_VOLUME:
+#  PROJECT_VOLUME:
