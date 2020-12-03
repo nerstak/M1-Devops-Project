@@ -8,10 +8,6 @@
 
 - [Installation](#Installation)
 
-- [Tests](#Tests)
-
-- [Use of the website](#use_of_the_website)
-
 ## Informations
 
 ### Description
