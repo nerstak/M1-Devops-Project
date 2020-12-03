@@ -1,4 +1,4 @@
-# M1-JEE-Project - Interns Supervision Solution (I2S)
+# M1-DevOps-Project - Proof of Concept
 
 ## Table of contents
 
@@ -14,207 +14,96 @@
 
 ## Informations
 
-### Team Composition
-
-Group composed of : 
-
-- Mathieu Cantagrel
-- Théo Delettre
-- Vincent Dubois
-- Vincent Mouillon
-- Karsten Roy
-- Victor Tang  ...
-
-Group : SE2
-
 ### Description
 
-JEE Web Application that help any teacher at EFREI Paris supervise easily the interns assigned to him/her.
+Proof of concept of CI/CD, for a Java Web Application.
 
 ### Technologies/framework used
 
-Built with
+Original java project used: 
 
-- Java
-- CSS
-- Javascript
-- JEE Plateform
+- [M1-JEE-Project](https://github.com/nerstak/M1-JEE-Project)
 
-IDE 
+Automation server: 
 
-- IntelliJ IDEA  
+- Jenkins
 
-Database
+Application server:
 
-- PostgreSQL
+- Wildfly
 
-Application server
-
-- Glassfish 5
-
-But also...
-
-- Maven
+Container & Virtualization:
 
 - Docker
 
-- SonarQube
+- Vagrant
 
-- JUnit and Mockito
+Chat:
 
-- JMeter
+- Slack
 
 ## Features
 
-This project enables any teacher to supervise the internships of his student.
-He can :
-
-- login with his Efrei email address and his password
-- see, on the homepage, all the internship assigned to him
-- filter this internship by years, name of the student and keywords.
-- update the information of the internship on the homepage
-- see the details of the internship on the mission details page
-- update the information of the internship on the mission details page
-- logout
+This project enables project to build, run test on follower on remote machine, deploy on distant server, and send notifications using Slack.
 
 ## Installation
 
-### Versions
+### Deployment server
 
-#### Version 1
+Upload the `docker-compose.yml` located in `deployment/vps-deploy` to your server, and run `docker-compose up -d --build`.
 
-Use the branch `version1`. You are able to run a deployed version using `docker-compose up -d` once the project is built using Maven.
-Before building it, comment the first line of the [db.properties](https://github.com/nerstak/M1-JEE-Project/blob/main/src/main/webapp/WEB-INF/db.properties) file, and uncomment the second.
-You don't need to setup the database or the server.
-However, it may be a bit unstable, as it was not the application server used during development.
+If you are using a different server from ours, put your`DEPLOYMENT_IP` in the stage `Deploy`, in the argument `-Dhostname`.
 
-If you wish to use Glassfish, follow the instructions below.
+### Docker builder
 
-#### Version 2
+In `deployment/vagrant-docker`, run `vagrant up`.
 
-Use the branch `main`. Because of the differences between Glassfish and Wildfly as application servers, you cannot use the same setup. Please follow the instructions below.
+This machine will be used to summon followers to build our project.
 
-### Database
+### Jenkins
 
-#### Set up of PostgreSQL with Glassfish
+#### Machine setup
 
-For more information on how to use Glassfish and PostgreSQL, please read the following [documentation](https://github.com/nerstak/M1-JEE-Project/blob/main/doc/Use%20Postgress%20with%20Glassfish.md).
+In `deployment/vagrant-jenkins`, run `vagrant up`. In case the installation script fails, you will have to connect to the machine and install vagrant manually.
 
-#### Set up of the database with PostgreSQL
+Connect to [localhost:8080](localhost:8080) and install Jenkins.
 
-For more information on how to set up our database, please read the following [documentation](https://github.com/nerstak/M1-JEE-Project/blob/main/doc/Setup%20database%20with%20PostgreSQL.md).
+#### Plugins
 
-#### Connection to the database with Java
+If they are not installed, install:
 
-The login, password and url connection to the database are stored inside the [db.properties](https://github.com/nerstak/M1-JEE-Project/blob/main/src/main/webapp/WEB-INF/db.properties) file.   
-Those strings are used in the DataServices classes, for the version 1.
+- Docker
 
-For the version 2, credentials are stored inside the [persistence.xml](https://github.com/nerstak/M1-JEE-Project/blob/main/src/main/resources/META-INF/persistence.xml) file.
+- Maven
 
-### Building
+- Github
 
-`mvn package`
+- Slack
 
-## Tests
+#### Setup
 
-Note that tests are only available in the Version 2.
+##### Maven
 
-### Unit testing coverage
+In Tools, add Maven, name it `maven`, install automatically and select version 3.6.0.
 
-Unitary tests have been set up for most of our code base. The only part not tested are the models (EJB), because they are only beans with no complexity.
+##### Docker
 
-To run the tests, use `mvn clean package`. 
+In Configure Clouds, add a Docker. Name it `docker`, put `tcp://192.168.33.10` in Docker Host URI (IP of our Vagrant machine).
 
-Every information related to these tests will be displayed in the terminal.
+In Docker Agent templates, name it and label it `java-docker-slave`, **enable it**, connect with SSH and configure your credentials (by default, jenkins/vagrant or jenkins/jenkins).
 
-![maven_test_terminal](./Screenshot/maven_junit_terminal.png)
+##### Credentials
 
-### Static testing
+In credentials manager, add your GitHub credentials and put `github` as its ID. This step is necessary if this repository is private.
 
-SonarQube has been set up to provide some static testing on the software. It provides informations on potential bugs, security risks and mistakes. Thanks to this tool, we have been able to reduce errors. To use it, please see this [documentation](https://github.com/nerstak/M1-JEE-Project/blob/main/doc/Setup%20of%20sonarqube.md).
+Create another credential for Wildfly, with adm/adm and put `deployment_wildfly` as its ID.
 
-![Sonarqube_review](./Screenshot/sonarqube_review.png)
+#### Slack
 
-### JMeter testing
+Install the following plugin in your Slack channel: [Jenkins Slack](https://my.slack.com/services/new/jenkins-ci).
 
-JMeter has been used to have some performance tests. However, while you have JMeter file located inside the `jmeter` folder that is working, you may not be able to use it: it has been built with different UUIDs for the data. Some screenshots have been placed inside the report. To use it, please see this [documentation](https://github.com/nerstak/M1-JEE-Project/blob/main/doc/Using%20JMeter.md)
+In Jenkins Credentials, add your Teams domain, the Integration Token and the Project Channel. Get the Teams domain and Token from here [Jenkins CI](https://slack.com/apps/A0F7VRFKN-jenkins-ci).
 
-![jmeter_table](./Screenshot/jmeter_table.png)
+#### Pipeline
 
-## Use of the website <a name = "use_of_the_website"></a>
-
-### Login
-
-You first need to login in the login page :
-![login page](./Screenshot/LoginPage.JPG)
-
-If you make a mistake in your credentials or if you let field empty, an error message will be displayed.  
-![Error empty fields](./Screenshot/ErrorEmptyFields.JPG)  
-
-![Error bad credentials](./Screenshot/ErrorCredentials.JPG)
-
-### Homepage
-
-Once you are logged in, you have access to some actions on the home page.  
-![Homepage](./Screenshot/Homepage.JPG)
-First, you have an overview of all the interns that are assigned to you in the table.  
-You can modify every information and validate your change by clicking on the "modify" button at the beginning of the line.  
-![Table](./Screenshot/Internship.JPG)
-Also, you can see more details about an internship by clicking on the "details" button on each line. This will redirect you to the mission details page.  
-You can filter the internships by the year, keywords or name of the intern and validate your choice by clicking on the "Search button".  
-![Filter](./Screenshot/Filter.JPG)  
-Last, you can logout of your account by clicking on the logout button placed in the top right corner, just right next to your name. You will be redirect to the login page.  
-
-### Details
-
-On the mission details page, you will be able to modify other information.
-Company :
-
-- Name of the company
-
-- Intern supervisor inside the company
-
-- Begin date
-
-- End date
-
-- Address of the company   
-  ![Company](./Screenshot/Company.JPG) 
-
-Student :
-
-- Group
-
-- First name
-
-- Last name
-
-- Email
-
-- URL of the linkedin profile   
-  ![Student](./Screenshot/Student.JPG)   
-
-Internship :
-
-- Report's title
-
-- Description
-
-- Your comments
-
-- The student comments  
-  ![Internship](./Screenshot/InternshipDetails.JPG)   
-
-Skills and keywords : 
-
-- Add keywords
-
-- Add skills  
-  ![Skills and keywords](./Screenshot/Skills_keywords.JPG)   
-
-You must click on the "modify" or "add" button of each section you have modified to validate your changes.
-A message will be displayed each time you modify something to keep you inform about the changes. 
-
-![Error database](./Screenshot/Error_db.JPG)  
-
-![Success database](./Screenshot/Success_db.JPG)  
+Create a new pipeline, add your SCM repository (the link of this repository), select your credentials if needed and select Jenkinsfile from repository. 
